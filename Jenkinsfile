@@ -15,16 +15,15 @@ pipeline {
                 sh 'mvn clean deploy -DskipTests'
             }
         }
-}  
-}
-    stage('SonarQube analysis') {
+        stage('SonarQube analysis') {
             environment {
                 scannerHome = tool 'yash02-sonar-scanner'
             }
-                steps {
-                    withSonarQubeEnv('sonarqube-server') {
-                        sh "${scannerHome}/bin/sonar-scanner"
-                    }
+            steps {
+                withSonarQubeEnv('sonarqube-server') {
+                    sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
-        
+        }
+    }
+}
